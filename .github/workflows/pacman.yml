@@ -1,4 +1,4 @@
-name: generate pacman contribution graph
+name: Generate Pacman Contribution Graph
 
 on:
   schedule:
@@ -6,23 +6,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate:
+  build:
+    runs-on: ubuntu-latest
+
     permissions:
       contents: write
 
-    runs-on: ubuntu-latest
-
     steps:
-      - name: generate github-contribution-grid-snake.svg
-        uses: Platane/snk/svg-only@v3
+      - name: Generate Pacman graph
+        uses: abozanona/pacman-contribution-graph@main
         with:
-          github_user_name: LealLara
+          github_user_name: Leallara
 
-          outputs: |
-            dist/pacman-contribution-graph.svg
-            dist/pacman-contribution-graph-dark.svg?palette=github-dark
-
-      - name: push github-contribution-grid-snake.svg to the output branch
+      - name: Push generated files
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
