@@ -16,7 +16,8 @@ jobs:
       - name: Generate Pacman graph
         uses: abozanona/pacman-contribution-graph@main
         with:
-          github_user_name: Leallara
+          github_user_name: LealLara
+          generate_dark_theme: true
 
       - name: Push generated files
         uses: crazy-max/ghaction-github-pages@v4
