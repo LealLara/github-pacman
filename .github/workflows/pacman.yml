@@ -4,22 +4,29 @@ on:
   schedule:
     - cron: "0 */12 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
 
+    timeout-minutes: 5
+
     steps:
-      - name: Generate Pacman graph
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Pacman Contribution Graph
         uses: abozanona/pacman-contribution-graph@main
         with:
-          github_user_name: LealLara
-          generate_dark_theme: true
+          github_user_name: LealLAra
 
-      - name: Push generated files
+      - name: Publish Pacman Graph
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
